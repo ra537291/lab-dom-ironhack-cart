@@ -40,22 +40,35 @@ function removeProduct(event) {
   //... your code goes here
   const removeButton1 = document.getElementsByTagName('button')[0];
   const removeButton2 = document.getElementsByTagName('button')[1];
-  if (target === removeButton1){
-    (document.getElementsByClassName('product')[0]).parentNode.removeChild((document.getElementsByClassName('product')[0]))
-    (document.getElementsByTagName("tbody")).appendChild((document.getElementsByClassName('product')[0]))
-
-  } else {
-    (document.getElementsByClassName('product')[1]).parentNode.removeChild((document.getElementsByClassName('product')[1]))
-    
-
-  }
+  if (target === removeButton1){ (document.getElementsByClassName('product')[0]).parentNode.removeChild((document.getElementsByClassName('product')[0])) } 
+  else { (document.getElementsByClassName('product')[1]).parentNode.removeChild((document.getElementsByClassName('product')[1]))  }
   
+  calculateAll();
 } 
 
 // ITERATION 5
 
 function createProduct() {
   //... your code goes here
+  let productName = document.querySelector('.create-product input[type=text]').value;
+  let productPrice = document.querySelector('.create-product input[type=number]').value;
+  let newProduct = `
+    <tr class = "product">
+      <td class = "name">
+        <span> ${productName}</span>
+      </td>
+      <td class="price">$<span>${productPrice}</span></td>
+          <td class="quantity">
+            <input type="number" value="0" min="0" placeholder="Quantity" />
+          </td>
+          <td class="subtotal">$<span>0</span></td>
+          <td class="action">
+            <button class="btn btn-remove">Remove</button>
+          </td>
+        </tr>`
+
+  document.getElementsByTagName('tbody')[0].insertAdjacentHTML('beforeEnd',newProduct);
+
 }
 
 window.addEventListener('load', () => {
